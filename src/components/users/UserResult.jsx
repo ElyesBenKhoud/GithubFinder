@@ -1,8 +1,11 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const TOKEN = "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";
 const UserResult = () => {
+  const [users, setUsers] = useState([]);
+  const [Loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -19,19 +22,30 @@ const UserResult = () => {
   //   console.log(data);
   // };
 
+  //  {
+  //   headers: { Authorization: `token ${TOKEN}` },
+  // }
+
   const fetchUsers = async () => {
     try {
       axios
-        .get("https://api.github.com/users", {
-          headers: { Authorization: `token ${TOKEN}` },
-        })
-        .then((res) => console.log(res.data))
-        .then(() => console.log(TOKEN));
+        .get("https://api.github.com/users")
+        .then((res) => setUsers(res.data))
+        .then(() => setLoading(false));
     } catch (err) {
       console.log(err);
     }
   };
-  return <div>UserResult</div>;
+
+  if (!Loading) {
+    return (
+      <div className="grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
+        {users && users.map((user) => <h3> {user.login}</h3>)}
+      </div>
+    );
+  } else {
+    return <h3> loading ...</h3>;
+  }
 };
 
 export default UserResult;
