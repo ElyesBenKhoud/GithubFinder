@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const TOKEN = "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";
+// const TOKEN = "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";
 const UserResult = () => {
   const [users, setUsers] = useState([]);
   const [Loading, setLoading] = useState(true);
