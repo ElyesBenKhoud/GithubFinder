@@ -10,18 +10,6 @@ const UserResult = () => {
     fetchUsers();
   }, []);
 
-  // const fetchUsers = async () => {
-  //   const response = await fetch(`${process.env.URL}/users`, {
-  //     headers: {
-  //       Authorization: `token ${process.env.TOKEN}`,
-  //       Accept: "application/json",
-  //     },
-  //   });
-
-  //   const data = await response.json();
-  //   console.log(data);
-  // };
-
   const fetchUsers = async () => {
     try {
       axios
