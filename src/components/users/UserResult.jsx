@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import Spinner from "../layout/Spinner";
 import axios from "axios";
+
 const UserResult = () => {
+  //satet the users in an array
   const [users, setUsers] = useState([]);
   const [Loading, setLoading] = useState(true);
 
@@ -9,6 +11,7 @@ const UserResult = () => {
     fetchUsers();
   }, []);
 
+  //getting users data from API
   const fetchUsers = () => {
     try {
       axios
@@ -24,9 +27,10 @@ const UserResult = () => {
     }
   };
 
+  //conditional rendering && spinner while data not received yet
   if (!Loading) {
     return (
-      <div className="grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 ">
         {users && users.map((user, idx) => <h3 key={idx}> {user.login}</h3>)}
       </div>
     );
