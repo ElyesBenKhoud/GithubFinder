@@ -1,7 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Spinner from "../layout/Spinner";
-// const TOKEN = "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";
+import axios from "axios";
 const UserResult = () => {
   const [users, setUsers] = useState([]);
   const [Loading, setLoading] = useState(true);
@@ -10,10 +9,14 @@ const UserResult = () => {
     fetchUsers();
   }, []);
 
-  const fetchUsers = async () => {
+  const fetchUsers = () => {
     try {
       axios
-        .get("https://api.github.com/users")
+        .get(`${process.env.REACT_APP_URL}/users`, {
+          headers: {
+            Authorization: process.env.REACT_APP_TOKEN,
+          },
+        })
         .then((res) => setUsers(res.data))
         .then(() => setLoading(false));
     } catch (err) {
