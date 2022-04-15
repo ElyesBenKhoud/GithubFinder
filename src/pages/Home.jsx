@@ -1,4 +1,5 @@
 import UserResult from "../components/users/UserResult";
+
 const Home = () => {
   return (
     <>

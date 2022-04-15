@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import Spinner from "../layout/Spinner";
 // const TOKEN = "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";
 const UserResult = () => {
   const [users, setUsers] = useState([]);
@@ -22,10 +22,6 @@ const UserResult = () => {
   //   console.log(data);
   // };
 
-  //  {
-  //   headers: { Authorization: `token ${TOKEN}` },
-  // }
-
   const fetchUsers = async () => {
     try {
       axios
@@ -40,11 +36,11 @@ const UserResult = () => {
   if (!Loading) {
     return (
       <div className="grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
-        {users && users.map((user) => <h3> {user.login}</h3>)}
+        {users && users.map((user, idx) => <h3 key={idx}> {user.login}</h3>)}
       </div>
     );
   } else {
-    return <h3> loading ...</h3>;
+    return <Spinner />;
   }
 };
 
