@@ -3,7 +3,7 @@ import Spinner from "../layout/Spinner";
 import axios from "axios";
 
 const UserResult = () => {
-  //screate state to store the users in an array
+  //create state to store the users in an array
   const [users, setUsers] = useState([]);
   const [Loading, setLoading] = useState(true);
 
@@ -14,12 +14,14 @@ const UserResult = () => {
   //getting users data from API
   const fetchUsers = async () => {
     try {
+      // Token sent through header testing
+      // , {
+      //   headers: {
+      //     Authorization: process.env.REACT_APP_TOKEN,
+      //   },
+      // }
       const response = await axios
-        .get(`${process.env.REACT_APP_URL}/users`, {
-          headers: {
-            Authorization: process.env.REACT_APP_TOKEN,
-          },
-        })
+        .get(`${process.env.REACT_APP_URL}/users`)
         .then(() => setUsers(response.data))
         .then(() => setLoading(false));
     } catch (err) {
