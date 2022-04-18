@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
-const UserItem = ({ user }) => {
-  return <div>{user.login}</div>;
+const UserItem = ({ user: { login, avatar_url } }) => {
+  return <div>{login}</div>;
 };
 
 UserItem.propTypes = {
