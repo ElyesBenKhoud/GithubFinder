@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Spinner from "../layout/Spinner";
 import axios from "axios";
+import UserItem from "./UserItem";
 
 const UserResult = () => {
   //create state to store the users in an array
@@ -20,9 +21,9 @@ const UserResult = () => {
       //     Authorization: process.env.REACT_APP_TOKEN,
       //   },
       // }
-      const response = await axios
+      await axios
         .get(`${process.env.REACT_APP_URL}/users`)
-        .then(() => setUsers(response.data))
+        .then((response) => setUsers(response.data))
         .then(() => setLoading(false));
     } catch (err) {
       console.log(err);
@@ -33,7 +34,7 @@ const UserResult = () => {
   if (!Loading) {
     return (
       <div className="grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 ">
-        {users && users.map((user, idx) => <h3 key={idx}> {user.login}</h3>)}
+        {users && users.map((user) => <UserItem key={user.id} user={user} />)}
       </div>
     );
   } else {
