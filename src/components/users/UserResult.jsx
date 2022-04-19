@@ -1,34 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
 import Spinner from "../layout/Spinner";
-import axios from "axios";
 import UserItem from "./UserItem";
+import GithubContext from "../../context/github/GithubContext";
 
 const UserResult = () => {
-  //create state to store the users in an array
-  const [users, setUsers] = useState([]);
-  const [Loading, setLoading] = useState(true);
+  const { users, fetchUsers, Loading } = useContext(GithubContext);
 
-  useEffect(() => {
+  useEffect(() => { 
     fetchUsers();
-  }, []);
-
-  //getting users data from API
-  const fetchUsers = async () => {
-    try {
-      // Token sent through header testing
-      // , {
-      //   headers: {
-      //     Authorization: process.env.REACT_APP_TOKEN,
-      //   },
-      // }
-      await axios
-        .get(`${process.env.REACT_APP_URL}/users`)
-        .then((response) => setUsers(response.data))
-        .then(() => setLoading(false));
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  }, [fetchUsers]);
 
   //conditional rendering && spinner while data not received yet
   if (!Loading) {
