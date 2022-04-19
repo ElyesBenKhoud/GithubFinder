@@ -6,7 +6,7 @@ import GithubContext from "../../context/github/GithubContext";
 const UserResult = () => {
   const { users, fetchUsers, Loading } = useContext(GithubContext);
 
-  useEffect(() => { 
+  useEffect(() => {
     fetchUsers();
   }, [fetchUsers]);
 
