@@ -8,7 +8,7 @@ const User = () => {
   const params = useParams();
   useEffect(() => {
     getUser(params.login);
-  }, [getUser]);
+  }, [getUser, params.login]);
 
   return <div>{user.login}</div>;
 };
