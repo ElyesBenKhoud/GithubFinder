@@ -5,9 +5,9 @@ import Alert from "./components/layout/Alert";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import User from "./pages/User";
+import NotFound from "./pages/NotFound";
 import { GithubProvider } from "./context/github/GithubContext";
 import { AlertProvider } from "./context/alert/AlertContext";
-import NotFound from "./pages/NotFound";
 
 // NOTE: Alert is only used on the '/' route moving to that route we can prevent
 // content shift when alert shows by hiding and unhiding the Alert rather than
