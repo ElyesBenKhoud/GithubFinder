@@ -39,7 +39,6 @@ export const GithubProvider = ({ children }) => {
       window.location = "/notfound";
     } else {
       const data = await response.json();
-      console.log(data);
       dispatch({
         type: "GET_USER",
         payload: data,
