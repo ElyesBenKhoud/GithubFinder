@@ -1,3 +1,4 @@
+import Fade from "react-reveal/Fade";
 import { useState, useContext } from "react";
 import GithubContext from "../../context/github/GithubContext";
 import AlertContext from "../../context/alert/AlertContext";
@@ -8,14 +9,19 @@ function UserSearch() {
 
   const { users, dispatch } = useContext(GithubContext);
   const { setAlert } = useContext(AlertContext);
-
   const handleChange = (e) => setText(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (text === "") {
-      setAlert("Please enter something", "error");
+      setAlert(
+        <Fade bottom collapse>
+          <div className="invalid-feedback" style={{ display: "block" }}>
+            Please enter user target information ...
+          </div>
+        </Fade>
+      );
     } else {
       dispatch({ type: "SET_LOADING" });
       const users = await searchUsers(text);
